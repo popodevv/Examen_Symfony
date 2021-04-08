@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<h2> List des projets </h2>
+
+<a href=" {{ path('post_add') }}">Ajouter un projet</a>
+
+    {% for projet in projets %}
+        <p>Numero du projet :{{ projet.id }})</p> </br>
+        <p>Nom du projet : {{ projet.name }}</p> </br>
+        <p> Status du projet : {{ projet.status }} </p> <br>
+        <p>Créé le  {{ projet.startedat|date('Y-m-d') }} </p>
+        <p>Cloturé le {{ projet.endedat|date('Y-m-d') }} </p>
+
+        <a href=" {{ path('projet_show', {'id': projet.id}) }} ">Voir le projet</a>
+    {% endfor %}
+
+{% endblock %}

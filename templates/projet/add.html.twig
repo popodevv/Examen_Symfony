@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Créer un nouveau projet {% endblock %}
+
+{% block body %}
+    <form action="{{ path('post_add') }}" method="post">
+        Nom du projet : <input type="text" name="name">
+        <button type="submit">Ajouter</button>
+    </form>
+{% endblock %}

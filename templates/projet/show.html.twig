@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gérer un projet{% endblock %}
+
+{% block body %}
+ <h2> Nom : {{ projet.name }} </h2>
+    <p>Numéro : {{ projet.id }}</p> </br>
+    <p>status : {{ projet.status }}</p> </br>
+
+    <p>Changer le status :</p>
+        <form action="" method="post">
+        <select name="statut">
+            {% if project.statut == "Nouveau" %}
+                <option value="Nouveau">{{ project.statut }}</option>
+                <option value="En cours">En cours</option>
+                <option value="Terminé">Terminé</option>
+            {% elseif project.statut == "En cours" %}
+                <option value="En cours">{{ project.statut }}</option>
+                <option value="Nouveau">Nouveau</option>
+                <option value="Terminé">Terminé</option>
+            {% else %}
+                <option value="Terminé">Terminé</option>
+                <option value="Nouveau" disabled>Nouveau</option>
+                <option value="En cours" disabled>En cours</option>
+            {% endif %}
+        </select>
+
+    <p>Commencé le : {{ projet.startedat|date('Y-m-d') }}</p>
+    <p>Terminé le : {{ projet.endedat|date('Y-m-d')}}</p>
+
+
+<h3> Tâches </h3>  
+<a href="{{ path('add_task') }}">Ajouter une tâche </a>
+  
+    {% for task in projet.tasks %}
+        <p>Nom de la tâche :{{ task.title }}</p> </br>
+        <p>Description : {{ task.description }}</p> </br>
+    {% endfor %} 
+
+{% endblock %}
